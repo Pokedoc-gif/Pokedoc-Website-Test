@@ -3,50 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PokéDoc</title>
+<title>PokéDoc Legendary Edition</title>
 
 <link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-<script src="script.js" defer></script>
+<script defer src="script.js"></script>
+<script type="module" src="jsfirebase.js"></script>
 </head>
 
 <body>
-  
-<div id="battleIntro">
-    <div class="battle-text" id="battleText"></div>
 
-    <img id="introBlastoise"
-         src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif"
-         alt="Blastoise">
+<canvas id="particles"></canvas>
 
-    <div class="flash"></div>
-</div>
-
-<!-- Pokeball Loader -->
-<div id="loader">
-    <div class="pokeball">
-        <div class="center-line"></div>
-        <div class="center-button"></div>
-    </div>
+<!-- CINEMATIC INTRO -->
+<div id="intro">
+  <h1 id="introLogo">PokéDoc</h1>
 </div>
 
 <div class="pokedex">
 
-    <div class="logo">PokéDoc</div>
-    <button id="darkToggle">🌙 Toggle Dark Mode</button>
+  <div class="logo-wrapper">
+      <h1 class="logo">PokéDoc</h1>
+  </div>
 
-    <div class="screen">
+  <button id="darkToggle">🌙 Toggle Dark Mode</button>
 
-        <div class="container">
-
-<!-- PSA CASE -->
+  <div class="screen">
+      <div class="container">
+        
+        <!-- PSA CASE -->
 <div class="card" onclick="flipCard(this)">
     
     <div class="card-inner">
         <div class="card-front">
             <h3>PSA UV Protective Case</h3>
-            <img width="200"
+            <img width="100" height="300"
                  src="https://uploads.onecompiler.io/44e4cjszf/44e49nb36/psa%20case.png"
                  alt="PSA UV Protective Case">
         </div>
@@ -88,6 +80,7 @@
 
 </div>
 
+
             <!-- SLEEVES -->
             <div class="card" onclick="flipCard(this)">
                 <div class="card-inner">
@@ -109,27 +102,7 @@
     <div class="shiny-layer"></div>
 
 </div>
-            <!-- Card Frame -->
-            <div class="card" onclick="flipCard(this)">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <h3>Pokemon Eeveelutions Card Frame Case CSGC (Promo card included)</h3>
-                        <img src="https://uploads.onecompiler.io/44e4cjszf/44e78zseq/Pokemon%20Eeveelutions%20Card%20Frame%20Case%20CSGC%20(Promo%20card%20included).png">
-                    </div>
-                    <div class="card-back">
-                        <h3>Pokemon Eeveelutions Card Frame Case CSGC (Promo card included)</h3>
-                        <p>Complete Set Discount R1600</p >
-                        <p class="price" id="display4">R450 each</p >
-                        <button onclick="buyProduct(event,'Pokemon Accessories Metal Tin')">
-                Buy via WhatsApp
-            </button>
-        </div>
-    </div>
 
-    <!-- ✅ CORRECT POSITION -->
-    <div class="shiny-layer"></div>
-
-</div>
             <!-- TIN -->
             <div class="card" onclick="flipCard(this)">
                 <div class="card-inner">
@@ -140,7 +113,7 @@
                     <div class="card-back">
                         <h3>Pokemon Accessories Metal Tin</h3>
                         <p>Multiple Options available</p >
-                        <p class="price" id="display5">R60 each</p >
+                        <p class="price" id="display4">R60 each</p >
                         <button onclick="buyProduct(event,'Pokemon Accessories Metal Tin')">
                 Buy via WhatsApp
             </button>
@@ -171,48 +144,11 @@
 
 </div>
 
-        </div>
-
-        <!-- ADMIN PANEL (INSIDE SCREEN, NOT HEAD) -->
-        <div id="adminPanel">
-            <h3>Admin Dashboard</h3>
-
-            <label>PSA Case Price:</label>
-            <input type="text" id="price1" value="R250"><br><br>
-
-            <label>Binder Price:</label>
-            <input type="text" id="price2" value="R350"><br><br>
-
-            <label>Sleeves Price:</label>
-            <input type="text" id="price3" value="R50"><br><br>
-
-            <label>Card Frame Price:</label>
-            <input type="text" id="price4" value="R450"><br><br>
-            
-            <label>Tin Price:</label>
-            <input type="text" id="price5" value="R60"><br><br>
-
-            <button onclick="updatePrices()">Update Prices</button>
-            <hr>
-<h3>Customer Requests</h3>
-<button onclick="loadAdminRequests()">Refresh Requests</button>
-<div id="adminRequests"></div>
-        </div>
-
-    </div>
-</div>
-
-<!-- ===== SWITCH STYLE REQUEST SECTION ===== -->
-<section class="switch-wrapper">
-
-  <div class="joycon left-joycon">
-      <div class="stick"></div>
-      <div class="button small"></div>
-      <div class="button small lower"></div>
+      </div>
   </div>
 
-  <div class="switch-screen">
-    <div class="power-led"></div>
+  <!-- REQUEST SECTION -->
+  <section class="request-section">
       <h2>Most Requested Items</h2>
 
       <div class="request-box">
@@ -222,24 +158,29 @@
       </div>
 
       <div id="mostRequested"></div>
+  </section>
+
+  <!-- ADMIN -->
+  <div id="adminPanel">
+      <h3>Admin Dashboard</h3>
+
+      <label>PSA Case Price:</label>
+      <input type="text" id="price1"><br><br>
+
+      <button onclick="updatePrices()">Update Prices</button>
+
+      <hr>
+      <h3>All Requests</h3>
+      <button onclick="loadAdminRequests()">Refresh</button>
+      <div id="adminRequests"></div>
   </div>
 
-  <div class="joycon right-joycon">
-      <div class="stick"></div>
-      <div class="button"></div>
-      <div class="button"></div>
-      <div class="button"></div>
-      <div class="button"></div>
-  </div>
-
-</section>
+</div>
 
 <footer>
-© 2026 PokéDoc | Not affiliated with Pokémon
-<p onclick="toggleAdmin()" style="cursor:pointer;">⚙️</p >
+© 2026 PokéDoc Legendary Edition  
+<span onclick="toggleAdmin()" style="cursor:pointer;">⚙️</span>
 </footer>
-
-<script type="module" src="jsfirebase.js"></script>
 
 </body>
 </html>
