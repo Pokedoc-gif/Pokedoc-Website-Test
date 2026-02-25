@@ -38,7 +38,7 @@
     <div class="card-inner">
         <div class="card-front">
             <h3>PSA UV Protective Case</h3>
-            <img width="100" height="300"
+            <img width="200"
                  src="https://uploads.onecompiler.io/44e4cjszf/44e49nb36/psa%20case.png"
                  alt="PSA UV Protective Case">
         </div>
@@ -80,7 +80,6 @@
 
 </div>
 
-
             <!-- SLEEVES -->
             <div class="card" onclick="flipCard(this)">
                 <div class="card-inner">
@@ -102,7 +101,27 @@
     <div class="shiny-layer"></div>
 
 </div>
+            <!-- Card Frame -->
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Pokemon Eeveelutions Card Frame Case CSGC (Promo card included)</h3>
+                        <img src="https://uploads.onecompiler.io/44e4cjszf/44e78zseq/Pokemon%20Eeveelutions%20Card%20Frame%20Case%20CSGC%20(Promo%20card%20included).png">
+                    </div>
+                    <div class="card-back">
+                        <h3>Pokemon Eeveelutions Card Frame Case CSGC (Promo card included)</h3>
+                        <p>Complete Set Discount R1600</p >
+                        <p class="price" id="display4">R450 each</p >
+                        <button onclick="buyProduct(event,'Pokemon Accessories Metal Tin')">
+                Buy via WhatsApp
+            </button>
+        </div>
+    </div>
 
+    <!-- ✅ CORRECT POSITION -->
+    <div class="shiny-layer"></div>
+
+</div>
             <!-- TIN -->
             <div class="card" onclick="flipCard(this)">
                 <div class="card-inner">
@@ -113,7 +132,7 @@
                     <div class="card-back">
                         <h3>Pokemon Accessories Metal Tin</h3>
                         <p>Multiple Options available</p >
-                        <p class="price" id="display4">R60 each</p >
+                        <p class="price" id="display5">R60 each</p >
                         <button onclick="buyProduct(event,'Pokemon Accessories Metal Tin')">
                 Buy via WhatsApp
             </button>
@@ -144,6 +163,8 @@
 
 </div>
 
+        </div>
+
       </div>
   </div>
 
@@ -164,8 +185,20 @@
   <div id="adminPanel">
       <h3>Admin Dashboard</h3>
 
-      <label>PSA Case Price:</label>
-      <input type="text" id="price1"><br><br>
+            <label>PSA Case Price:</label>
+            <input type="text" id="price1" value="R250"><br><br>
+
+            <label>Binder Price:</label>
+            <input type="text" id="price2" value="R350"><br><br>
+
+            <label>Sleeves Price:</label>
+            <input type="text" id="price3" value="R50"><br><br>
+
+            <label>Card Frame Price:</label>
+            <input type="text" id="price4" value="R450"><br><br>
+            
+            <label>Tin Price:</label>
+            <input type="text" id="price5" value="R60"><br><br>
 
       <button onclick="updatePrices()">Update Prices</button>
 
@@ -178,7 +211,7 @@
 </div>
 
 <footer>
-© 2026 PokéDoc Legendary Edition  
+© 2026 PokéDoc | Not affiliated with Pokémon
 <span onclick="toggleAdmin()" style="cursor:pointer;">⚙️</span>
 </footer>
 
