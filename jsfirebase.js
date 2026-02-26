@@ -40,7 +40,8 @@ async function loadPrices() {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    const prices = docSnap.data();    
+    const prices = docSnap.data();
+
     document.getElementById("display1").innerText = prices.price1;
     document.getElementById("display2").innerText = prices.price2;
     document.getElementById("display3").innerText = prices.price3;

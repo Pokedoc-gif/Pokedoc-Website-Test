@@ -50,3 +50,8 @@ document.getElementById("darkToggle")
 .addEventListener("click",()=>{
 document.body.classList.toggle("dark");
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("PokéDoc Service Worker Registered"));
+}
