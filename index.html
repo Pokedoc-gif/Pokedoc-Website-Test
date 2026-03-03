@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#cc0000">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PokéDoc Legendary Edition</title>
+<title>PokéDoc</title>
 
 <link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
-<script defer src="script.js"></script>
-<script type="module" src="jsfirebase.js"></script>
+<script src="script.js" defer></script>
 </head>
 
 <body>
+  
+<div id="battleIntro">
+    <div class="battle-text" id="battleText"></div>
 
-<canvas id="particles"></canvas>
+    <img id="introBlastoise"
+         src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif"
+         alt="Blastoise">
 
-<!-- CINEMATIC INTRO -->
-<div id="intro">
-  <h1 id="introLogo">PokéDoc</h1>
+    <div class="flash"></div>
+</div>
+
+<!-- Pokeball Loader -->
+<div id="loader">
+    <div class="pokeball">
+        <div class="center-line"></div>
+        <div class="center-button"></div>
+    </div>
 </div>
 
 <div class="pokedex">
 
-  <div class="logo-wrapper">
-      <h1 class="logo">PokéDoc</h1>
-  </div>
+    <div class="logo">PokéDoc</div>
+    <button id="darkToggle">🌙 Toggle Dark Mode</button>
 
-  <button id="darkToggle">🌙 Toggle Dark Mode</button>
+    <div class="screen">
 
-  <div class="screen">
-      <div class="container">
-        
-        <!-- PSA CASE -->
+        <div class="container">
+
+<!-- PSA CASE -->
 <div class="card" onclick="flipCard(this)">
     
     <div class="card-inner">
@@ -147,6 +151,50 @@
     <div class="shiny-layer"></div>
 
 </div>
+
+            <!-- Uno -->
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Pokemon Uno Card Game </h3>
+                        <img src="https://uploads.onecompiler.io/44e4cjszf/44f8dcg6a/Pokemon%20Uno%20Card%20Game%20.png">
+                    </div>
+                    <div class="card-back">
+                        <h3>Pokemon Uno Card Game </h3>
+                        <p>Limited Stock available</p >
+                        <p class="price" id="display6">R100 each</p >
+                        <button onclick="buyProduct(event,'Pokemon Uno Card Game')">
+                Buy via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- ✅ CORRECT POSITION -->
+    <div class="shiny-layer"></div>
+
+</div>
+
+            <!-- Monopoly -->
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Pokemon Monopoly Board Game </h3>
+                        <img src="https://uploads.onecompiler.io/44e4cjszf/44f8dcg6a/Pokemon%20Monopoly%20Board%20Game%20.png">
+                    </div>
+                    <div class="card-back">
+                        <h3>Pokemon Monopoly Board Game </h3>
+                        <p>Limited Stock available</p >
+                        <p class="price" id="display7">R450 each</p >
+                        <button onclick="buyProduct(event,'Pokemon Monopoly Board Game ')">
+                Buy via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- ✅ CORRECT POSITION -->
+    <div class="shiny-layer"></div>
+
+</div>
             
             <!-- Contact Us -->
             <div class="card" onclick="flipCard(this)">
@@ -169,25 +217,9 @@
 
         </div>
 
-      </div>
-  </div>
-
-  <!-- REQUEST SECTION -->
-  <section class="request-section">
-      <h2>Most Requested Items</h2>
-
-      <div class="request-box">
-          <input type="text" id="requestName" placeholder="Item Name">
-          <textarea id="requestDetails" placeholder="Details (optional)"></textarea>
-          <button onclick="sendItemRequest()">Submit Request</button>
-      </div>
-
-      <div id="mostRequested"></div>
-  </section>
-
-  <!-- ADMIN -->
-  <div id="adminPanel">
-      <h3>Admin Dashboard</h3>
+        <!-- ADMIN PANEL (INSIDE SCREEN, NOT HEAD) -->
+        <div id="adminPanel">
+            <h3>Admin Dashboard</h3>
 
             <label>PSA Case Price:</label>
             <input type="text" id="price1" value="R250"><br><br>
@@ -204,20 +236,60 @@
             <label>Tin Price:</label>
             <input type="text" id="price5" value="R60"><br><br>
 
-      <button onclick="updatePrices()">Update Prices</button>
+            <label>Uno Price:</label>
+            <input type="text" id="price6" value="R100"><br><br>
+            
+            <label>Monopoly Price:</label>
+            <input type="text" id="price7" value="R450"><br><br>
+            
+            <button onclick="updatePrices()">Update Prices</button>
+            <hr>
+<h3>Customer Requests</h3>
+<button onclick="loadAdminRequests()">Refresh Requests</button>
+<div id="adminRequests"></div>
+        </div>
 
-      <hr>
-      <h3>All Requests</h3>
-      <button onclick="loadAdminRequests()">Refresh</button>
-      <div id="adminRequests"></div>
+    </div>
+</div>
+
+<!-- ===== SWITCH STYLE REQUEST SECTION ===== -->
+<section class="switch-wrapper">
+
+  <div class="joycon left-joycon">
+      <div class="stick"></div>
+      <div class="button small"></div>
+      <div class="button small lower"></div>
   </div>
 
-</div>
+  <div class="switch-screen">
+    <div class="power-led"></div>
+      <h2>Most Requested Items</h2>
+
+      <div class="request-box">
+          <input type="text" id="requestName" placeholder="Item Name">
+          <textarea id="requestDetails" placeholder="Details (optional)"></textarea>
+          <button onclick="sendItemRequest()">Submit Request</button>
+      </div>
+
+      <div id="mostRequested"></div>
+  </div>
+
+  <div class="joycon right-joycon">
+      <div class="stick"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+  </div>
+
+</section>
 
 <footer>
 © 2026 PokéDoc | Not affiliated with Pokémon
-<span onclick="toggleAdmin()" style="cursor:pointer;">⚙️</span>
+<p onclick="toggleAdmin()" style="cursor:pointer;">⚙️</p >
 </footer>
+
+<script type="module" src="jsfirebase.js"></script>
 
 </body>
 </html>
